@@ -3,11 +3,13 @@ import { AuthProvider,  useAuth } from "./context/Auth"
 
 function Navbar({ token, onLogout }) {
     const { isLoggedin } = useAuth()
+    const { doLogout } = useAuth()
     return (
         <>
             <div className="bg-sky-200 p-5 flex justify-end ">
                 <h1>Notes App</h1>
                 {isLoggedin ? (<span >Udah Login</span>) : (<span >Belum Login</span>)}
+                {doLogout ? (<span>Logout</span>) : (<span>Belum Logout</span> )}
                 
                 <nav className="">
                     {token !== null ? null : <Link className="ml-10" to={"/Register"}> Register </Link>}

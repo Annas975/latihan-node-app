@@ -4,44 +4,27 @@ import { useAuth } from "../context/Auth";
 
 function Login({ onLogin }) {
     const {doLogin} = useAuth()
+    const {doLogout} = useAuth()
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     // const [token, setTokens] =useState()
 
-    const handleClick = async () => {
-        doLogin()
-        // const login = await handleLogin(email, password);
-        // if (login.status === 200) {
-        //     setEmail("")
-        //     setPassword("")
-        //     setTokens(login.data.data.accessToken)
-        //     onLogin(login.data.data.accessToken)
-        //     alert(login.data.message)
-        // } else {
-        //     const { email = [], password = [] } = login.data.errors;
-        //     const err = [...email, ...password];
-        //     alert(err.join("\n"));
-        // }
-    }
-
-    // const [email, setEmail] = useState("");
-    // const [password, setPassword] = useState("");
-
     // const handleClick = async () => {
-    //     const login = await HandlerLogin(email, password);
-    //     if(login.status === 200) {
-    //         setEmail("")
-    //         setPassword("")
-    //         setTokens(login.data.data.accessToken)
-    //         onLogin(login.data.data.accessToken)
-    //         alert(login.data.messege)
-    //     } else {
-    //         const {email=[],password=[]} = login.data.errors;
-    //         const arr = [...email,...password];
-    //         alert(err.join("\n"))
-    //     }
-    // }
+    //     doLogin()
+        // const Login =  
+        const handleLogin = () => {
+            doLogin(email, password)
+            console.log("Berhasil Login")
+        }
+    
+        const handleLogout = () => {
+            doLogout()
+            console.log("logout")
+        }
+
+
+  
 
     return (
         <>
@@ -69,13 +52,18 @@ function Login({ onLogin }) {
                     </div>
                     {/* <button className='bg-white pt-1 pb-1 pl-2 pr-2 rounded-lg mt-2 shadow-sm hover:shadow-lg hover:bg-slate-100 hover:bg-contain' onClick={HandlerLogin} >Login</button> */}
                     <button
-                        className='bg-white pt-1 pb-1 pl-2 pr-2 rounded-lg mt-2 shadow-sm hover:shadow-lg hover:bg-slate-100 hover:bg-contain' onClick={handleClick}>
+                        className='bg-white pt-1 pb-1 pl-2 pr-2 rounded-lg mt-2 shadow-sm hover:shadow-lg hover:bg-slate-100 hover:bg-contain' onClick={handleLogin}>
                         Login
+                    </button>
+
+                    <button
+                        className='bg-white pt-1 pb-1 pl-2 pr-2 rounded-lg mt-2 shadow-sm hover:shadow-lg hover:bg-slate-100 hover:bg-contain' onClick={handleLogout}>
+                        Register
                     </button>
                 </div>
             </section>
         </>
     )
-}
+}           
 
 export default Login

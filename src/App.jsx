@@ -4,7 +4,7 @@ import Navbar from "./Navbar"
 import Note from "./Note"
 import Login from './Pages/Login'
 // import Registrasi from "./pages/Registrasi"
-import { getToken } from "./api"
+import { Register, getToken } from "./api"
 import { useAuth } from "./context/Auth"
 // import { setTokens } from "./token"
 
@@ -12,12 +12,12 @@ function App() {
     // panggil nilai isLoggedin dari context
     const { isLoggedin } = useAuth()
 
-    const [token,setToken] = useState(null);
+    const [token, setToken] = useState(null);
 
     const handleLogin = (tokens) => {
         setToken(tokens)
     }
-    
+
     const handleLogout = () => {
         setToken(null)
         localStorage.removeItem('token');
@@ -26,20 +26,56 @@ function App() {
     useEffect(() => {
         const tokens = getToken()
         setToken(tokens);
-    },[])
+    }, [])
 
     return (
         <BrowserRouter>
             <Routes>
-                <Route element={<Navbar token={token} onLogout={handleLogout}/>}>
-                    <Route path={"/Note"} element={<Note />} /> 
-                    <Route path={"/Login"} element={<Login onLogin={handleLogin}/>} />
-                </Route>
-                {/* {token !== null ? 
+                <Route element={<Navbar token={token} onLogout={handleLogout} />}>
+                    {isLoggedin ? (
+                        //halaman Note akan terbuka ketika isLoggedin true
+                        //
+                        <>
+                            <Route path={"/Note"} element={<Note />} />
+                            <Route path={"/Login"} element={<Navigate to={"/Note"} />} />
+                        </>
+                    ) : (
+                        <>
+                            <Route path={"*"} element={<Navigate to={"/Login"} />} />
+                            <Route path={"/Registrasi"} element={<Register />} />
+                            <Route path={"/Login"} element={<Login onLogin={handleLogin} />} />
+                        </>
+                    )}
+
+{/* 
+                    <Route element={<Navbar token={token} onLogout={handleLogout} />}>
+                        {isLoggedin ? (
+                            <>
+                                <Route path={"/Note"} element={<Note />} />
+                                <Route path={"/Login"} element={<Navigate to={"/Notes"} />} />
+                            </>
+
+                        ) : (
+                            <>
+                                <Route path={"/Registrasi"} element={<Register />} />
+                                <Route path={"/Login"} element={<Login onLogin={handleLogin} />} />
+                            </>
+                        )} */}
+
+
+
+
+
+                    </Route>
+                    {/*                 
+                {token !== null ? 
+                //jika benar maka akan jalan yang ini
                     <Route>
                         <Route path={"/Note"} element={<Note />} /> 
                         <Route path="*" element={<Navigate to={"/Note"}/>}/>
                     </Route>
+                    
+                //jika salah maka akan  jalan yang ini
                 : <Route path={"/Note"} element={<h1 className=" text-white grid place-items-center mt-[16rem] font-bold text-[4rem]">Not Found</h1>} />}
                 {
                     token !== null ? null : 
@@ -50,6 +86,7 @@ function App() {
                 }
                 </Route>
                 <Route path="*" element={<Navigate to={"/Login"}/>}/> */}
+
             </Routes>
 
         </BrowserRouter>
@@ -57,7 +94,7 @@ function App() {
     )
 }
 
-export default App
+export default App
 
 
 //======================================
