@@ -1,5 +1,6 @@
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
 import { handleLogin } from "../api"
+import { getToken } from "../api"
 
 //Nilai default
 const initialAuthState = {
@@ -19,7 +20,14 @@ const useAuth = () => {
 //buat provider dari react component
 const AuthProvider = ({ children }) => {
     //state
-    const [isLoggedin, setIsLoggedin] = useState(false)
+    const [isLoggedin, setIsLoggedin] = useState(false);
+
+    useEffect (() => {
+        const token = getToken();
+        if( token != null) {
+            setIsLoggedin(true)
+        }
+    },[]) 
 
     //function
     const doLogin = async (email, password) => {
@@ -41,7 +49,8 @@ const AuthProvider = ({ children }) => {
     // const doLogout = () => { setIsLoggedin(false) }
     //return provider
     const doLogout = () => {
-        setIsLoggedin(true)
+        setIsLoggedin(false)
+        removeToken()
     }
 
     // return provider
@@ -54,6 +63,6 @@ const AuthProvider = ({ children }) => {
 
 
 
-
-export { AuthProvider, useAuth }
 //export provider & hook
+export { AuthProvider, useAuth }
+

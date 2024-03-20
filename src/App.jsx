@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react"
+
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
 import Navbar from "./Navbar"
 import Note from "./Note"
 import Login from './Pages/Login'
 // import Registrasi from "./pages/Registrasi"
-import { Register, getToken } from "./api"
+import { Register } from "./api"
 import { useAuth } from "./context/Auth"
 // import { setTokens } from "./token"
 
@@ -12,26 +12,28 @@ function App() {
     // panggil nilai isLoggedin dari context
     const { isLoggedin } = useAuth()
 
-    const [token, setToken] = useState(null);
+    // const [token, setToken] = useState(null);
 
-    const handleLogin = (tokens) => {
-        setToken(tokens)
-    }
+    // const handleLogin = (tokens) => {
+    //     setToken(tokens)
+    // }
 
-    const handleLogout = () => {
-        setToken(null)
-        localStorage.removeItem('token');
-    }
+    // const handleLogout = () => {
+    //     setToken(null)
+    //     localStorage.removeItem('token');
+    // }
 
-    useEffect(() => {
-        const tokens = getToken()
-        setToken(tokens);
-    }, [])
+    // useEffect(() => {
+    //     const tokens = getToken()
+    //     setToken(tokens);
+    // }, [])
 
     return (
         <BrowserRouter>
             <Routes>
-                <Route element={<Navbar token={token} onLogout={handleLogout} />}>
+
+           
+                <Route element={<Navbar />}>
                     {isLoggedin ? (
                         //halaman Note akan terbuka ketika isLoggedin true
                         //
@@ -43,7 +45,7 @@ function App() {
                         <>
                             <Route path={"*"} element={<Navigate to={"/Login"} />} />
                             <Route path={"/Registrasi"} element={<Register />} />
-                            <Route path={"/Login"} element={<Login onLogin={handleLogin} />} />
+                            <Route path={"/Login"} element={<Login />} />
                         </>
                     )}
 
