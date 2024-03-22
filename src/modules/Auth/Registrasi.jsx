@@ -1,6 +1,6 @@
 // import { Navigate, useNavigate } from "react-router-dom" 
 import { useState } from "react"
-import { Register } from "../api"
+import { Register } from "../Config/api"
 
 function Registrasi() {
 

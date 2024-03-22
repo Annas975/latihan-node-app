@@ -1,5 +1,5 @@
 import { Link, Outlet } from "react-router-dom"
-import { AuthProvider, useAuth } from "./context/Auth"
+import { AuthProvider, useAuth } from "../modules/Auth/Auth"
 
 export default function Navbar() {
     const { isLoggedin } = useAuth()

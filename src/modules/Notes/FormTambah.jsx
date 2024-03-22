@@ -1,5 +1,6 @@
 import { useState } from "react";
-import './App.css'
+// import './App.css'
+import { useNote } from "./NoteContext";
 import { useRef } from 'react'
 
 function FormTambah({ onAdd }) {

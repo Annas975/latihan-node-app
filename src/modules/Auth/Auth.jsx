@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react"
-import { handleLogin } from "../api"
-import { getToken } from "../api"
+import { handleLogin } from "../Config/api"
+import { getToken } from "../Config/api"
 
 //Nilai default
 const initialAuthState = {

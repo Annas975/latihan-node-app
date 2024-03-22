@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
+// import NoteItem from './NoteItem'
 import NoteItem from './NoteItem'
 import FormTambah from './FormTambah'
 import FormEdit from './FormEdit'
-import { addNote, deleteNote, editNote, tampilkan } from './api'
-
+import { addNote, deleteNote, editNote, tampilkan } from '../Config/api'
 import axios ,{Axios} from 'axios'
-import './App.css'
+// import './App.css'
 import { nanoid } from 'nanoid'
 
   function Note() {

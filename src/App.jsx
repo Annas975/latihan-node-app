@@ -1,11 +1,11 @@
 
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
-import Navbar from "./Navbar"
-import Note from "./Note"
-import Login from './Pages/Login'
+import Navbar from "./Layouts/Navbar"
+import Note from "./modules/Notes/Note"
+import Login from './modules/Auth/Login'
 // import Registrasi from "./pages/Registrasi"
-import { Register } from "./api"
-import { useAuth } from "./context/Auth"
+import { Register } from "./modules/Config/api"
+import { useAuth } from "./modules/Auth/Auth"
 // import { setTokens } from "./token"
 
 function App() {
